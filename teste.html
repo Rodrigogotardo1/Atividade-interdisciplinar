@@ -1,0 +1,151 @@
+<!--
+  Login Page by pedxz (Forumeiros)
+  With BootStrap and jQuery
+  -->
+  <!DOCTYPE html>
+  <html>
+   
+  <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+      <title>Conecte-se no fórum</title>
+      <link type="image/png" href="https://i.imgur.com/J7Rf7af_d.jpg" rel="icon" />
+      <link rel="stylesheet" href="https://forumeiros.github.io/resources/bootstrap/bootstrap.min.css" />
+      <link rel="stylesheet" href="https://forumeiros.github.io/resources/font-awesome/css/font-awesome.min.css" />
+      <script src="https://forumeiros.github.io/resources/bootstrap/bootstrap.min.js"></script>
+      <script src="https://forumeiros.github.io/resources/bootstrap/popper.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+   
+  <body class="bg-dark" style="background: url('https://i35.servimg.com/u/f35/20/14/41/96/screen11.png')
+  no-repeat black; background-size: cover; background-position: center center;">
+      <script type="text/javascript">
+          (function($) {
+              'use strict';
+        
+              $(function() {
+                  $.get('/forum?change_version=prosilver')
+                      .done(function(context) {
+        
+                          if ($('a[id="logout"]', context).length != 0) {
+                                $('.alert-success').fadeIn();
+                                $('.register').html('Sessão iniciada, redirecionado...').prop('onclick', null);
+                                $('input').attr('disabled', true);
+                              setTimeout(
+                                  function() {
+                                      window.location.replace('/forum');
+                                  }, 3000);
+        
+                          }
+        
+                      })
+                      .fail(function() {
+                          alert('Contacte o Suporte Forumeiros!');
+                          location.pathname = '/forum';
+                      });
+          
+                  $('form').submit(function() {
+                      var username = $('input[name="username"]').val(),
+                          pass = $('input[name="password"]').val(),
+                          autologin = 0;
+        
+                          if($('input[name="autologin"]').is(':checked'))
+                            autologin = 1;
+   
+                    $.post( '/login', { username: username, password: pass, login: '', autologin: autologin })
+                        .done(function( data ) {
+        
+                            if(data.search('Você especificou um nome de Usuário ou Senha inválida, incorreta ou inativa') > 0) {
+                                $('.form-control-feedback').fadeIn();
+                          } else {
+                                  $('.form-control-feedback').hide();
+                                  $('.register').html('Bem-vindo ' + username + ' redirecionado...').prop('onclick', null);
+                                  $('input').attr('disabled', true);
+                              setTimeout(
+                                  function() {
+                                      window.location.replace('/forum');
+                                  }, 3000);
+        
+                          }
+        
+        
+                      })
+                      .fail(function() {
+                          alert('Contacte o Suporte Forumeiros!');
+                          location.pathname = '/login';
+                      });
+            return false;
+        });
+   
+      
+              });
+          }(jQuery));
+      </script>
+      <!-- Start Container -->
+      <div class="container">
+          <!-- Start title + desc -->
+      <div class="pt-5 text-center text-light">
+        <h2>Hospital UNIMED</h2>
+        <p class="lead">Trabalhamos pelo respeito ao próximo, junte-se a UNIMED!</p>
+        </div>
+          <!-- ./End title + desc -->
+          <div class="row">
+              <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                  <div class="card bg-dark text-light border-0 shadow-lg my-5">
+                      <div class="card-body">
+                          <h5 class="card-title text-center">Entrar no fórum da UNIMED</h5>
+                          <!-- Start Form Login -->
+                          <form method="post" action="/login">
+                              <!-- Start Input Username -->
+                              <div class="form-label-group mb-3">
+                                  <input class="form-control" placeholder="Seu usuário" value="" maxlength="40" size="30" id="username" name="username" tabindex="1" type="text" required autofocus />
+                              </div>
+                              <!-- ./End Input Username -->
+                              <!-- Start Input Password -->
+                              <div class="form-label-group mb-3">
+                                  <input class="form-control" maxlength="25" size="30" name="password" id="password" tabindex="2" type="password" placeholder="Sua Senha" required />
+                                  <div class="form-control-feedback" style="display: none">Usuário ou senha incorretos, tente novamente!</div>
+                              </div>
+                              <!-- ./End Input Password -->
+                              <!-- Start Check AutoLogin -->
+                              <div class="custom-control custom-checkbox mb-3 float-right">
+                                  <input type="checkbox" class="custom-control-input" name="autologin" id="autologin" />
+                                  <label class="custom-control-label" for="autologin">Lembrar dados</label>
+                              </div>
+                              <!-- ./End Check AutoLogin -->
+                              <!-- Don't delete this -->
+                              <input value="" name="redirect" type="hidden" />
+                              <input value="" name="query" type="hidden" />
+                              <!-- ./End Don't delete this -->
+                              <!-- Start Login Button -->
+                              <input class="btn btn-lg btn-primary btn-block text-uppercase rounded-0" value="Entrar" tabindex="6" name="login" type="submit" />
+                              <!-- ./End Login Button -->
+                          </form>
+                          <!-- ./End Form Login -->
+                          <hr class="my-4" />
+                          <button class="btn btn-lg btn-info btn-block text-uppercase text-truncate register rounded-0" type="submit" onclick="location.href='/register'"><i class="fa fa-user mr-2"></i> Criar Conta</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Start Footer -->
+          <footer class="text-light text-center text-small">
+              <!-- Start Copyright -->
+              <p class="mb-1">️ Criado com  de -Xerox-.<br/> <a href="https://www.forumeiros.com" target="_blank">Direitos reservados a DIC</a>.</p>
+              <!-- ./End Copyright -->
+              <!-- Start Fast Access -->
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href="/forum">Início</a></li>
+                  <li class="list-inline-item"><a href="/faq">FAQ</a></li>
+                  <li class="list-inline-item"><a href="/privacy">Política de Confidencialidade</a></li>
+                  <li class="list-inline-item"><a href="/profile?mode=sendpassword">Esqueceu a senha?</a></li>
+              </ul>
+              <!-- ./End Fast Access -->
+          </footer>
+          <!-- ./End Footer -->
+      </div>
+      <!-- ./End Container -->
+  </body>
+   
+  </html>

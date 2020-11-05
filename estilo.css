@@ -1,0 +1,134 @@
+*{
+    margin: 0;
+    padding: 0;box-sizing: border-box;
+}
+
+body{
+    background-image: url(/imagens/fazenda-back.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    text-align: center;
+}
+
+
+header{
+   left: 0;
+   top: 0;
+    position: fixed;
+    width: 100%;
+    height: 75px;
+    background-color: rgb(202, 202, 209);
+    padding: 9px 0;
+}
+
+header.cabecalho{
+    max-width: 100;
+    margin: 0 ;
+    padding: 0 2%;
+}
+
+header figure{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    margin: 0px;
+}
+a:link{
+    text-decoration: white;
+    
+}
+
+img#logo{
+    width: 130%;
+    height: 150%;
+}
+
+nav{
+    position: absolute;
+    width: 1270px;
+    height: 100px;
+    margin: 10px 10px 10px 50px;
+   
+    text-transform: uppercase;
+    
+}
+
+ul{
+    height: 30px;
+    padding: 0px;
+    margin: 10px 0px 0px 10px;
+    text-align: right;
+    
+    
+}
+
+nav ul li{
+    font-size: 20px;
+    display: inline;
+    
+    padding: 10px;
+    
+    
+}
+
+header li{
+    display: inline-block;
+    text-decoration: none;
+    margin: 0 10px;
+    
+}
+section.corpo{
+    margin-top: 100px;
+}
+
+section#corpo img:hover{
+    padding: 30px;
+    height: 30px;
+    display: inline-block;
+}
+
+.imagens img{
+    width: 35%;
+    padding: 30px;
+    height: 35%;
+    margin-right: 40px;
+} 
+
+.imagens-full img{
+    width: 80%;
+    
+    padding: 0px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    
+}
+
+
+
+p{
+    color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 10px;
+    padding: 10px;
+    font-weight: bold;
+    text-shadow: black 0.1em 0.1em;
+    font-size: 25px;
+}
+
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    color: blanchedalmond;
+    font-size: 50px;
+    text-shadow: black 0.05em 0.1em;
+}
+
+
+footer#rodape {
+    clear: both;
+    border-top: 1px solid #606060;
+}
+
+footer#rodape p {
+    text-align: center;
+}
